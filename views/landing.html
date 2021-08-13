@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CHIT - CHAT</title>
+    <meta
+      name="description"
+      content="Stream a basic audio-video chat plus texting with Vonage Video API in Node.js"
+    />
+    <link
+      id="favicon"
+      rel="icon"
+      href="https://tokbox.com/developer/favicon.ico"
+      type="image/x-icon"
+    />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+
+  <body>
+    <header>
+      <h4>CHIT-CHAT</h4>
+    </header>
+
+    <main>
+
+
+
+      <div class="container">
+        <div class="box">
+      <form id="registration" class="registration">
+        <label>
+          <span>Room</span>
+          <input
+            type="text"
+            name="room-name"
+            placeholder="Enter Room-ID"
+            required
+          />
+        </label>
+        <fieldset>
+          <!--
+          <label >
+            <input type="radio" name="user-type" value="viewer"/>
+            <span>Viewer</span>
+          </label>
+        -->
+          <label>
+            <input type="radio" name="user-type" value="participant" checked/>
+            <span>Welcome to CHIT-CHAT</span>
+          </label>
+        </fieldset>
+
+      <div class="wrapper">
+        <label>
+          <span>User name</span>
+          <input
+            
+            type="text"
+            name="user-name"
+            placeholder="Enter your name"
+            required
+          />
+        </label>
+      </div>
+
+        <button class="btn-enter"><h5>ENTER</h5></button>
+      </form>
+      </div>
+      </div>
+
+
+
+
+
+    </main>
+
+    <footer>
+      
+    </footer>
+
+    <script>
+      const form = document.getElementById("registration");
+      form.addEventListener("submit", event => {
+        event.preventDefault();
+        const isViewer = form.elements["user-type"].value === "viewer";
+
+        if (isViewer) {
+          location.href = `/session/viewer/${form.elements["room-name"].value}?username=${form.elements["user-name"].value}&type=viewer`;
+        } else {
+          location.href = `/session/participant/${form.elements["room-name"].value}?username=${form.elements["user-name"].value}&type=participant`;
+        }
+      });
+    </script>
+  </body>
+</html>
